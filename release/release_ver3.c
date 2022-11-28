@@ -95,7 +95,7 @@ void sub_menu_2()
         for (int x = 0; x < TEACHER; x++)
         {
             scanf("%d",&player[i].player_score[x]);
-            if (player[i].player_score[x]>10||player[i].player_score[x]<0)
+            if (player[i].player_score[x]>PLAYER||player[i].player_score[x]<0)
             {
                 printf("输入不合法，请重试\n");
                 x--;
