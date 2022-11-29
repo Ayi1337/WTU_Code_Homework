@@ -17,10 +17,10 @@ struct players
 	int player_number;
 	char player_name[PLAYER];
 	char player_gender;
-	int player_score[TEACHER];
+	int player_score[1];
 	float player_ave;
     int player_rank;
-}player[PLAYER];
+}player[PLAYER]={{1001,"王小红",88},{1002,"李大白",80},{1003,"小黑",91},{1004,"图图",95},{1005,"爱丽丝",76}};
 
 int main()
 {
@@ -158,7 +158,7 @@ void sub_menu_4()
                 printf("%d号选手成绩无效，被删除\n",player[i].player_number);
                 player[i].player_ave=0;
             }
-            continue;
+            //continue;
         }
         printf("筛选成绩完成");
     }
@@ -178,9 +178,8 @@ void sub_menu_5()
             {
                 rank_lost++;
             }
-            continue;
+            player[i].player_rank=rank_lost;
         }
-        player[i].player_rank=rank_lost;
         rank_lost=0;
     }
     for (int i = 0; i < PLAYER; i++)
