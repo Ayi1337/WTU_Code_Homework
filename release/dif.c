@@ -20,18 +20,18 @@ struct players
 	char player_gender;
 	int player_score[PLAYER];
 	float player_ave;
-}player[PLAYER]/*={
+}player[PLAYER]={
              {1,"王小红1",'M',0,0,0,0,0,0,0,0,0,0},
              {2,"王小红2",'M',10,2,6,4,7,8,5,1,4,7},
              {3,"王小红3",'M',10,3,6,4,7,8,5,1,4,7},
              {4,"王小红4",'M',10,4,6,4,7,8,5,1,4,7},
-             {5,"王小红5",'M',10,5,6,4,7,8,5,1,4,7},
+             {5,"王小红5",'M',10,5,6,4,1,8,5,1,4,7},
              {6,"王小红6",'M',10,6,6,4,7,8,5,1,4,7},
-             {7,"王小红7",'M',10,7,6,4,7,8,5,1,4,7},
+             {7,"王小红7",'M',10,7,6,1,7,8,5,1,4,7},
              {8,"王小红8",'M',10,8,6,4,7,8,5,1,4,7},
-             {9,"王小红9",'M',10,9,6,4,7,8,5,1,4,7},
+             {9,"王小红9",'M',10,0,6,4,7,8,5,1,4,7},
              {10,"王小红0",'M',10,0,6,4,7,8,5,1,4,7}
-             }*/,temp;
+             },temp;
 int main()
 {
 	menu();
@@ -41,7 +41,7 @@ void menu()
 {
 	int choice;
 	printf("*******************请选择操作代码***********************\n");
-    printf("*    1.录入选手姓名及性别\n");
+    printf("*    1.录入姓名及性别\n");
 	printf("*    2.输入分数\n");
 	printf("*    3.计算平均分\n");
 	printf("*    4.显示选手最后得分\n");
@@ -172,17 +172,23 @@ void sub_menu_4()
     clean_screen();
     for (int i = 0; i < PLAYER; i++)
     {
+        if(player[i].player_ave<6.0)
+        {
+            printf("%d号选手因其中一项0分成绩无效，被删除\n",player[i].player_number);
+            player[i].player_ave=0;
+            continue;
+        }
         for (int x = 0; x < TEACHER; x++)
         {
-            if (player[i].player_ave<6.0||player[i].player_score[x]==0)
+            if (player[i].player_score[x]==0)
             {
                 printf("%d号选手成绩无效，被删除\n",player[i].player_number);
                 player[i].player_ave=0;
+                break;
             }
-            //continue;
         }
-        printf("筛选成绩完成");
     }
+    printf("成绩筛选完成\n\n");
     menu();
 }
 
@@ -203,10 +209,13 @@ void sub_menu_5()
     }
     for ( int i = 0; i < PLAYER; i++)
     {
-        printf("第%2d名为%2d号选手%10s,性别%c,最后得分为%.2f\n",i+1,player[i].player_number,player[i].player_name,player[i].player_gender,player[i].player_ave);
+        if(player[i].player_ave==0)
+        {
+            printf("%2d号选手%10s,性别%c,最后得分%.2f,无排名\n",player[i].player_number,player[i].player_name,player[i].player_gender,player[i].player_ave);
+        }else
+            printf("第%2d名为%2d号选手%10s,性别%c,最后得分为%.2f\n",i+1,player[i].player_number,player[i].player_name,player[i].player_gender,player[i].player_ave);
     }
-    printf("输入任意字符返回主菜单");
-    getchar();
+    menu();
 }
 
 void clean_screen()
