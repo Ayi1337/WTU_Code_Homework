@@ -3,7 +3,7 @@
 
 #define PLAYER 10
 #define TEACHER 7
-//函数
+
 void menu();
 void sub_menu_1();
 void sub_menu_2();
@@ -12,7 +12,7 @@ void sub_menu_4();
 void sub_menu_5();
 void sub_menu_6();
 void clean_screen();
-//结构体
+
 struct players
 {
 	int player_number;
@@ -21,7 +21,6 @@ struct players
 	int player_score[PLAYER];
 	float player_ave;
 }player[PLAYER],temp;
-
 int main()
 {
 	menu();
@@ -43,35 +42,35 @@ void menu()
     switch (choice)
     {
         case 1:
-        sub_menu_1();
-        break;
+            sub_menu_1();
+            break;
     
-    case 2:
-        sub_menu_2();
-        break;
+        case 2:
+            sub_menu_2();
+            break;
 
-    case 3:
-        sub_menu_3();
-        break;
+        case 3:
+            sub_menu_3();
+            break;
 
-    case 4:
-        sub_menu_4();
-        break;
+        case 4:
+            sub_menu_4();
+            break;
 
-    case 5:
-        sub_menu_5();
-        break;
+        case 5:
+            sub_menu_5();
+            break;
 
-    case 6:
-        sub_menu_6();
-        break;
+        case 6:
+            sub_menu_6();
+            break;
 
-    case 7:
-        exit(0);
-    
-    default:
-        printf("您的输入不合法，请重试\n");
-        menu();
+        case 7:
+            exit(0);
+        
+        default:
+            printf("您的输入不合法，请重试\n");
+            menu();
     }
 }
 
@@ -141,8 +140,7 @@ void sub_menu_3()
             sum+=player[i].player_score[x];
         }
         player[i].player_ave=(sum-player[i].player_score[0]-player[i].player_score[6])/5.0;
-        printf("\t去除最低分%d与最高分%d后最后得分为：%.2f",player[i].player_score[0],player[i].player_score[6],player[i].player_ave);
-        printf("\n");
+        printf("\t去除最低分%d与最高分%d后最后得分为：%.2f\n",player[i].player_score[0],player[i].player_score[6],player[i].player_ave);
     }
     menu();
 }
@@ -164,7 +162,7 @@ void sub_menu_5()
     {
         if(player[i].player_ave<6.0)
         {
-            printf("%d号选手因其中一项0分成绩无效，被删除\n",player[i].player_number);
+            printf("%d号选手因其中平均分小于6分，成绩无效，被删除\n",player[i].player_number);
             player[i].player_ave=0;
             continue;
         }
@@ -172,7 +170,7 @@ void sub_menu_5()
         {
             if (player[i].player_score[x]==0)
             {
-                printf("%d号选手成绩无效，被删除\n",player[i].player_number);
+                printf("%d号选手因评委打分中有0分，成绩无效，被删除\n",player[i].player_number);
                 player[i].player_ave=0;
                 break;
             }
