@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第五章时间</title>
+</head>
+<body>
+  <script>
+    const currentHour = new Date().getHours();
+
+    if (currentHour < 10) {
+      alert("Good morning");
+    } else if (currentHour >= 10 && currentHour < 20) {
+      alert("Good day");
+    } else {
+      alert("Good evening");
+    }
+  </script>
+</body>
+</html>

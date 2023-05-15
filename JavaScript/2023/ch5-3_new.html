@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>异常处理</title>
+    <script type="text/javascript">
+      var calculate = function(a, b, operator) {
+        if (isNaN(a) || isNaN(b)) {
+          throw {
+            name: "TypeError",
+            message: "输入必须为数字"
+          };
+        }
+
+        switch (operator) {
+          case '+':
+            return a + b;
+          case '-':
+            return a - b;
+          case '*':
+            return a * b;
+          case '/':
+            return a / b;
+          case '%':
+            return a % b;
+          default:
+            throw {
+              name: "OperatorError",
+              message: "运算符不正确"
+            };
+        }
+      }
+
+      function test() {
+        var a = Number(document.getElementById('a').value);
+        var b = Number(document.getElementById('b').value);
+        var operator = document.getElementById('operator').value;
+        var answer = document.getElementById('answer');
+        try {
+          answer.value = calculate(a, b, operator);
+        } catch (e) {
+          alert(e.name + ": " + e.message);
+        }
+      }
+    </script>
+    </head>
+    <body>
+        <p>计算器</p>
+        <input id="a" type="text">
+        <select id="operator">
+            <option>+</option>
+            <option>-</option>
+            <option>*</option>
+            <option>/</option>
+            <option>%</option>
+        </select>
+        <input id="b" type="text">
+        <button type="button" onclick="test()">=</button>
+        <input id="answer" type="text">
+    </body>
+</html>

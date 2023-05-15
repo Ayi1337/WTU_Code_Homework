@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>第六章扩展实训</title>
+</head>
+<body>
+  <script>
+    const numStudents = parseInt(prompt("请输入班级人数："));
+    let scores = [];
+
+    for (let i = 0; i < numStudents; i++) {
+      let score = parseInt(prompt(`请输入第${i + 1}个学生的成绩：`));
+      scores.push(score);
+    }
+
+    const totalScore = scores.reduce((acc, cur) => acc + cur, 0);
+    const averageScore = totalScore / numStudents;
+    const maxScore = Math.max(...scores);
+    const minScore = Math.min(...scores);
+
+    console.log(`总成绩：${totalScore}`);
+    console.log(`平均成绩：${averageScore}`);
+    console.log(`最高分：${maxScore}`);
+    console.log(`最低分：${minScore}`);
+  </script>
+</body>
+</html>
